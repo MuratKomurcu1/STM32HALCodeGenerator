@@ -1,0 +1,22 @@
+#(Small Example)
+import json
+
+# Büyük dataset'i yükle
+with open('/content/drive/MyDrive/stm32_production_dataset_1000plus.json', 'r') as f:
+    full_dataset = json.load(f)
+
+# İlk 10 örneği al
+sample_dataset = {
+    'examples': full_dataset['examples'][:10],
+    'metadata': {
+        'sample_size': 10,
+        'total_dataset_size': len(full_dataset['examples']),
+        'note': 'This is a sample. Full dataset available on HuggingFace.'
+    }
+}
+
+# Sample dataset'i kaydet
+with open('/content/stm32-hal-codegen/data/sample_dataset.json', 'w') as f:
+    json.dump(sample_dataset, f, indent=2)
+
+print("Sample dataset oluşturuldu")
